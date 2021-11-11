@@ -79,6 +79,8 @@ func main() {
 	//	fmt.Println("The token is invalid")
 	//}
 
+	//fmt.Println("Pass")
+
 }
 
 func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
