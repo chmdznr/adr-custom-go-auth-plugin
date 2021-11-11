@@ -188,10 +188,20 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	session:=getDefaultSession()
+
 	// auth was successful, add session and key to request's context so other middlewares can use it
-	ctx.SetSession(r, &user.SessionState{} ,true)
+	ctx.SetSession(r, session ,true)
 	// Let the request continue
 	fmt.Println("Auth passed")
+}
+
+func getDefaultSession() *user.SessionState {
+	// return session
+	return &user.SessionState{
+		OrgID: "default",
+		Alias: "custom-auth-session",
+	}
 }
 
 func isExpiredToken(tokenStr string) (bool, error) {
