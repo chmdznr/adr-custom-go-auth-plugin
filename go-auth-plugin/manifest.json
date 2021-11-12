@@ -1,12 +1,12 @@
 {
   "file_list": [
-    "customAuthPlugin.so"
+    "customAuthPlugin-20211112.v1.so"
   ],
   "custom_middleware": {
     "pre": [
       {
         "name": "AdiraCustomGoAuthPlugin",
-        "path": "customAuthPlugin.so"
+        "path": "customAuthPlugin-20211112.v1.so"
       }
     ],
     "post": [],
