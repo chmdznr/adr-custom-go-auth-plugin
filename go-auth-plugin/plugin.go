@@ -10,11 +10,13 @@ import (
 	"time"
 
 	"github.com/TykTechnologies/tyk/ctx"
+	"github.com/TykTechnologies/tyk/log"
 	"github.com/golang-jwt/jwt"
 )
 
 var oidcJwtAzp = ""
 var kcRealmPublicKey = ""
+var logger = log.Get()
 
 // AddFooBarHeader adds custom "Foo: Bar" header to the request
 //func AddFooBarHeader(rw http.ResponseWriter, r *http.Request) {
@@ -85,6 +87,10 @@ func main() {
 
 func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 	authHeaders := r.Header.Get(headers.Authorization)
+
+	//fmt.Printf("%v", authHeaders)
+	logger.Infof("%v", authHeaders)
+
 	// check header sanity
 	authParts := strings.Split(authHeaders, " ")
 	if len(authParts) <2 || !strings.Contains(authHeaders, "earer") {
@@ -102,6 +108,8 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 
 	sampleJwt := authParts[1]
 
+	//fmt.Println("Mulai cek expired token")
+	logger.Println("Mulai cek expired token")
 	isExpired, err := isExpiredToken(sampleJwt)
 	if err != nil {
 		replyData := map[string]interface{}{
@@ -119,6 +127,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 
 	if isExpired {
 		//fmt.Println("The token is expired")
+		logger.Error("The token is expired")
 		replyData := map[string]interface{}{
 			"error": "token expired",
 			"error_description": "Token is expired",
@@ -134,6 +143,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 	// get config_data from API definition
 	apidef := ctx.GetDefinition(r)
 	//fmt.Println("API name is", apidef.Name)
+	logger.Info("API name is", apidef.Name)
 	configData := apidef.ConfigData
 
 	for _, allowedClient := range configData["allowed_clients"].([]interface{}) {
@@ -148,6 +158,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 
 	if len(kcRealmPublicKey) <= 0 {
 		//fmt.Println("client_id not allowed to access this")
+		logger.Info("client_id not allowed to access this")
 		replyData := map[string]interface{}{
 			"error": "invalid client_id",
 			"error_description": "client_id not allowed to access this",
@@ -178,6 +189,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 
 	if !isValid {
 		//fmt.Println("The token is invalid")
+		logger.Info("The token is invalid")
 		replyData := map[string]interface{}{
 			"error": "invalid token",
 			"error_description": "Token is invalid",
@@ -195,7 +207,8 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 	// auth was successful, add session and key to request's context so other middlewares can use it
 	//ctx.SetSession(r, session ,true)
 	// Let the request continue
-	fmt.Println("Auth passed")
+	//fmt.Println("Auth passed")
+	logger.Info("Auth passed")
 }
 
 func getDefaultSession() *user.SessionState {
