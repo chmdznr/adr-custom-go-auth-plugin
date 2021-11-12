@@ -3,13 +3,12 @@
     "customAuthPlugin-20211112.v2.so"
   ],
   "custom_middleware": {
-    "pre": [
-      {
-        "name": "AdiraCustomGoAuthPlugin",
-        "path": "customAuthPlugin-20211112.v2.so"
-      }
-    ],
+    "pre": [],
     "post": [],
+    "auth_check": {
+      "name": "AdiraCustomGoAuthPlugin",
+      "path": "customAuthPlugin-20211112.v2.so"
+    },
     "driver": "goplugin"
   },
   "checksum": "",
