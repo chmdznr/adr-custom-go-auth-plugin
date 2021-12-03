@@ -1,0 +1,380 @@
+{
+  "created_at": "2021-11-11T09:06:37Z",
+  "api_model": {},
+  "api_definition": {
+    "api_id": "ef750e45f6dd4e686d32e5c34b69a99a",
+    "jwt_issued_at_validation_skew": 0,
+    "upstream_certificates": {},
+    "use_keyless": false,
+    "enable_coprocess_auth": false,
+    "base_identity_provided_by": "",
+    "custom_middleware": {
+      "pre": [],
+      "post": [],
+      "post_key_auth": [],
+      "auth_check": {
+        "name": "AdiraCustomGoAuthPlugin",
+        "path": "customAuthPlugin-20211112.v2.so",
+        "require_session": false,
+        "raw_body_only": false
+      },
+      "response": [],
+      "driver": "goplugin",
+      "id_extractor": {
+        "extract_from": "",
+        "extract_with": "",
+        "extractor_config": {}
+      }
+    },
+    "disable_quota": false,
+    "custom_middleware_bundle": "custom-auth-bundle-20211112.v2.zip",
+    "cache_options": {
+      "cache_timeout": 0,
+      "enable_cache": false,
+      "cache_all_safe_requests": false,
+      "cache_response_codes": [],
+      "enable_upstream_cache_control": false,
+      "cache_control_ttl_header": "",
+      "cache_by_headers": []
+    },
+    "enable_ip_blacklisting": false,
+    "tag_headers": [],
+    "jwt_scope_to_policy_mapping": {},
+    "pinned_public_keys": {},
+    "expire_analytics_after": 0,
+    "domain": "",
+    "openid_options": {
+      "providers": [],
+      "segregate_by_client": false
+    },
+    "jwt_policy_field_name": "",
+    "enable_proxy_protocol": false,
+    "jwt_default_policies": [],
+    "active": true,
+    "jwt_expires_at_validation_skew": 0,
+    "config_data": {
+      "allowed_clients": [
+        {
+          "name": "ad1gate_mobile",
+          "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAltnb4lSe2Y9ia8vfep3pW7mgXb1U8oIs9pVJTiZp0P5xNaPjLAwo2yDpNY4pb4HLndfKBvDvh2e7CYa/BttN+mrd/CKuu8YRi1JeMdt2VMEP45o5xQ5aoP0TWVaQMJIIt+rXgLi/6DPS6HWmooHcj/X36FPpDJSDcvisp3Pr7fCpWoK295lsgVQUFMfDh+HRGPTkWCAC1Qu34SaoIAVDlLfrhCMC6yU48dORt2+8mZZcuRpJyjnJs/epuRpH0MlsNAefWccdSbA37PtPitXbWzGNjvo2W/LNkvz1zorOvoIHNZh1O2OKBdh+v5dhXFlkfMPU4yYoyr4BMGGwzQKgtwIDAQAB"
+        }
+      ]
+    },
+    "notifications": {
+      "shared_secret": "",
+      "oauth_on_keychange_url": ""
+    },
+    "jwt_client_base_field": "",
+    "auth": {
+      "use_param": false,
+      "param_name": "",
+      "use_cookie": false,
+      "cookie_name": "",
+      "auth_header_name": "",
+      "use_certificate": false,
+      "validate_signature": false,
+      "signature": {
+        "algorithm": "",
+        "header": "",
+        "secret": "",
+        "allowed_clock_skew": 0,
+        "error_code": 0,
+        "error_message": ""
+      }
+    },
+    "check_host_against_uptime_tests": false,
+    "auth_provider": {
+      "name": "",
+      "storage_engine": "",
+      "meta": {}
+    },
+    "blacklisted_ips": [],
+    "graphql": {
+      "schema": "",
+      "enabled": false,
+      "engine": {
+        "field_configs": [],
+        "data_sources": []
+      },
+      "type_field_configurations": [],
+      "execution_mode": "",
+      "proxy": {
+        "auth_headers": {}
+      },
+      "subgraph": {
+        "sdl": ""
+      },
+      "supergraph": {
+        "subgraphs": [],
+        "merged_sdl": ""
+      },
+      "version": "",
+      "playground": {
+        "enabled": false,
+        "path": ""
+      }
+    },
+    "hmac_allowed_clock_skew": -1,
+    "dont_set_quota_on_create": false,
+    "uptime_tests": {
+      "check_list": [],
+      "config": {
+        "expire_utime_after": 0,
+        "service_discovery": {
+          "use_discovery_service": false,
+          "query_endpoint": "",
+          "use_nested_query": false,
+          "parent_data_path": "",
+          "data_path": "",
+          "cache_timeout": 60
+        },
+        "recheck_wait": 0
+      }
+    },
+    "enable_jwt": false,
+    "do_not_track": false,
+    "name": "IT - Mobile AD1GATE",
+    "slug": "ad1gateapi/api",
+    "oauth_meta": {
+      "allowed_access_types": [],
+      "allowed_authorize_types": [],
+      "auth_login_redirect": ""
+    },
+    "CORS": {
+      "enable": false,
+      "max_age": 0,
+      "allow_credentials": false,
+      "exposed_headers": [],
+      "allowed_headers": [],
+      "options_passthrough": false,
+      "debug": false,
+      "allowed_origins": [],
+      "allowed_methods": []
+    },
+    "event_handlers": {
+      "events": {}
+    },
+    "proxy": {
+      "target_url": "http://10.81.3.61:99/ad1gateapi/api/",
+      "service_discovery": {
+        "endpoint_returns_list": false,
+        "cache_timeout": 0,
+        "parent_data_path": "",
+        "query_endpoint": "",
+        "use_discovery_service": false,
+        "_sd_show_port_path": false,
+        "target_path": "",
+        "use_target_list": false,
+        "use_nested_query": false,
+        "data_path": "",
+        "port_data_path": ""
+      },
+      "check_host_against_uptime_tests": false,
+      "transport": {
+        "ssl_insecure_skip_verify": false,
+        "ssl_min_version": 0,
+        "proxy_url": "",
+        "ssl_ciphers": []
+      },
+      "target_list": [],
+      "preserve_host_header": false,
+      "strip_listen_path": true,
+      "enable_load_balancing": false,
+      "listen_path": "/private/ad1gateapi/api/",
+      "disable_strip_slash": false
+    },
+    "client_certificates": [],
+    "use_basic_auth": false,
+    "version_data": {
+      "not_versioned": false,
+      "default_version": "1.0",
+      "versions": {
+        "1.0": {
+          "name": "1.0",
+          "expires": "",
+          "paths": {
+            "ignored": [],
+            "white_list": [],
+            "black_list": []
+          },
+          "use_extended_paths": true,
+          "global_headers": {},
+          "global_headers_remove": [],
+          "global_response_headers": {},
+          "global_response_headers_remove": [],
+          "ignore_endpoint_case": false,
+          "global_size_limit": 0,
+          "override_target": "",
+          "extended_paths": {
+            "track_endpoints": [
+              {
+                "path": "/Submit/GenerateDatesByDedicateCMO",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GenerateDatesByAutoBranch",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GenerateDatesByAutoAssign",
+                "method": "POST"
+              },
+              {
+                "path": "/Tracking/GetSummaryTracking",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GenerateDatesByAsIs",
+                "method": "POST"
+              },
+              {
+                "path": "/Tracking/GetTrackingCount",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/SubmitOrderAd1gate",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GetListSubmitOrder",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GenerateDatesByNBM",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/CheckRedeemVoucher",
+                "method": "POST"
+              },
+              {
+                "path": "/Tracking/GetStatusOrder",
+                "method": "GET"
+              },
+              {
+                "path": "/Tracking/GetDetailOrder",
+                "method": "GET"
+              },
+              {
+                "path": "/Tracking/GetBranchByDLC",
+                "method": "GET"
+              },
+              {
+                "path": "/Submit/GetKecamatan",
+                "method": "GET"
+              },
+              {
+                "path": "/Login/Authenticate",
+                "method": "POST"
+              },
+              {
+                "path": "/Submit/GetModel",
+                "method": "POST"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "jwt_scope_claim_name": "",
+    "use_standard_auth": false,
+    "session_lifetime": 0,
+    "hmac_allowed_algorithms": [],
+    "disable_rate_limit": false,
+    "definition": {
+      "location": "header",
+      "key": "version",
+      "strip_path": false
+    },
+    "use_oauth2": false,
+    "jwt_source": "",
+    "jwt_signing_method": "",
+    "jwt_not_before_validation_skew": 0,
+    "use_go_plugin_auth": true,
+    "jwt_identity_base_field": "",
+    "allowed_ips": [],
+    "request_signing": {
+      "is_enabled": false,
+      "secret": "",
+      "key_id": "",
+      "algorithm": "",
+      "header_list": [],
+      "certificate_id": "",
+      "signature_header": ""
+    },
+    "org_id": "613656ebe8eff0000132ab0a",
+    "enable_ip_whitelisting": false,
+    "global_rate_limit": {
+      "rate": 0,
+      "per": 0
+    },
+    "protocol": "",
+    "enable_context_vars": true,
+    "tags": [],
+    "basic_auth": {
+      "disable_caching": false,
+      "cache_ttl": 0,
+      "extract_from_body": false,
+      "body_user_regexp": "",
+      "body_password_regexp": ""
+    },
+    "listen_port": 0,
+    "session_provider": {
+      "name": "",
+      "storage_engine": "",
+      "meta": {}
+    },
+    "auth_configs": {
+      "authToken": {
+        "use_param": false,
+        "param_name": "",
+        "use_cookie": false,
+        "cookie_name": "",
+        "auth_header_name": "",
+        "use_certificate": false,
+        "validate_signature": false,
+        "signature": {
+          "algorithm": "",
+          "header": "",
+          "secret": "",
+          "allowed_clock_skew": 0,
+          "error_code": 0,
+          "error_message": ""
+        }
+      },
+      "jwt": {
+        "use_param": false,
+        "param_name": "",
+        "use_cookie": false,
+        "cookie_name": "",
+        "auth_header_name": "",
+        "use_certificate": false,
+        "validate_signature": false,
+        "signature": {
+          "algorithm": "",
+          "header": "",
+          "secret": "",
+          "allowed_clock_skew": 0,
+          "error_code": 0,
+          "error_message": ""
+        }
+      }
+    },
+    "strip_auth_data": false,
+    "id": "618cdd1d894ef6000199f939",
+    "certificates": [],
+    "enable_signature_checking": false,
+    "use_openid": false,
+    "internal": false,
+    "jwt_skip_kid": false,
+    "enable_batch_request_support": false,
+    "enable_detailed_recording": true,
+    "response_processors": [],
+    "use_mutual_tls_auth": false
+  },
+  "hook_references": [],
+  "is_site": false,
+  "sort_by": 0,
+  "user_group_owners": [],
+  "user_owners": []
+}

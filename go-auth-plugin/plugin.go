@@ -3,11 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/TykTechnologies/tyk/headers"
-	"github.com/TykTechnologies/tyk/user"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/TykTechnologies/tyk/headers"
+	"github.com/TykTechnologies/tyk/user"
 
 	"github.com/TykTechnologies/tyk/ctx"
 	"github.com/TykTechnologies/tyk/log"
@@ -85,7 +86,7 @@ func main() {
 
 }
 
-func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
+func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 	authHeaders := r.Header.Get(headers.Authorization)
 
 	//fmt.Printf("%v", authHeaders)
@@ -93,9 +94,9 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 
 	// check header sanity
 	authParts := strings.Split(authHeaders, " ")
-	if len(authParts) <2 || !strings.Contains(authHeaders, "earer") {
+	if len(authParts) < 2 || !strings.Contains(authHeaders, "earer") {
 		replyData := map[string]interface{}{
-			"error": "invalid authorization",
+			"error":             "invalid authorization",
 			"error_description": "invalid authorization header",
 		}
 
@@ -113,7 +114,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 	isExpired, err := isExpiredToken(sampleJwt)
 	if err != nil {
 		replyData := map[string]interface{}{
-			"error": "invalid token expiration check",
+			"error":             "invalid token expiration check",
 			"error_description": err,
 		}
 
@@ -129,7 +130,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println("The token is expired")
 		logger.Error("The token is expired")
 		replyData := map[string]interface{}{
-			"error": "token expired",
+			"error":             "token expired",
 			"error_description": "Token is expired",
 		}
 
@@ -160,7 +161,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println("client_id not allowed to access this")
 		logger.Info("client_id not allowed to access this")
 		replyData := map[string]interface{}{
-			"error": "invalid client_id",
+			"error":             "invalid client_id",
 			"error_description": "client_id not allowed to access this",
 		}
 
@@ -175,7 +176,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 	isValid, err := isVerifiedToken(sampleJwt, finalPublicKey)
 	if err != nil {
 		replyData := map[string]interface{}{
-			"error": "Token validation error",
+			"error":             "Token validation error",
 			"error_description": err,
 		}
 
@@ -191,7 +192,7 @@ func AdiraCustomGoAuthPlugin(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println("The token is invalid")
 		logger.Info("The token is invalid")
 		replyData := map[string]interface{}{
-			"error": "invalid token",
+			"error":             "invalid token",
 			"error_description": "Token is invalid",
 		}
 
