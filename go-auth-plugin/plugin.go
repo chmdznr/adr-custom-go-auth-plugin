@@ -142,8 +142,11 @@ func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	logger.Info("Token is not expired")
+
 	// get config_data from API definition
 	apidef := ctx.GetDefinition(r)
+	logger.Info(apidef)
 	//fmt.Println("API name is", apidef.Name)
 	logger.Info("API name is", apidef.Name)
 	configData := apidef.ConfigData
