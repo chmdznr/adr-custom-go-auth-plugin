@@ -125,6 +125,7 @@ func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 		return
 		//log.Fatal(err)
 	}
+	logger.Info("Lolos cek expired token")
 
 	if isExpired {
 		//fmt.Println("The token is expired")
@@ -150,6 +151,7 @@ func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 	for _, allowedClient := range configData["allowed_clients"].([]interface{}) {
 		//fmt.Println(i2)
 		ac := allowedClient.(map[string]interface{})
+		logger.Info(ac)
 		//fmt.Println(ac["name"])
 		if ac["name"].(string) == oidcJwtAzp {
 			// found matching client_id
@@ -221,9 +223,11 @@ func getDefaultSession() *user.SessionState {
 }
 
 func isExpiredToken(tokenStr string) (bool, error) {
+	logger.Info("Masuk isExpiredToken")
 	var token *jwt.Token
 	parser := jwt.Parser{UseJSONNumber: true}
 	token, _, err := parser.ParseUnverified(tokenStr, jwt.MapClaims{})
+	logger.Info("Lolos ParseUnverified")
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok {
 		//fmt.Println(claims["exp"])
