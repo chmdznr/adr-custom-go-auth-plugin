@@ -3,14 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/TykTechnologies/tyk/apidef"
 	"net/http"
+	"reflect"
 	"strings"
 	"time"
+	"unsafe"
 
 	"github.com/TykTechnologies/tyk/headers"
 	"github.com/TykTechnologies/tyk/user"
 
-	"github.com/TykTechnologies/tyk/ctx"
 	"github.com/TykTechnologies/tyk/log"
 	"github.com/golang-jwt/jwt"
 )
@@ -145,11 +147,12 @@ func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 	logger.Info("Token is not expired")
 
 	// get config_data from API definition
-	apidef := ctx.GetDefinition(r)
-	logger.Info(apidef)
-	//fmt.Println("API name is", apidef.Name)
-	logger.Info("API name is", apidef.Name)
-	configData := apidef.ConfigData
+	//apiDef := ctx.GetDefinition(r)
+	apiDef := apiDefinitionRetriever(r.Context())
+	logger.Info(apiDef)
+	//fmt.Println("API name is", apiDef.Name)
+	logger.Info("API name is", apiDef.Name)
+	configData := apiDef.ConfigData
 
 	for _, allowedClient := range configData["allowed_clients"].([]interface{}) {
 		//fmt.Println(i2)
@@ -223,6 +226,33 @@ func getDefaultSession() *user.SessionState {
 		OrgID: "default",
 		Alias: "custom-auth-session",
 	}
+}
+
+func apiDefinitionRetriever(currentCtx interface{}) *apidef.APIDefinition {
+	contextValues := reflect.ValueOf(currentCtx).Elem()
+	contextKeys := reflect.TypeOf(currentCtx).Elem()
+
+	if contextKeys.Kind() == reflect.Struct {
+		for i := 0; i < contextValues.NumField(); i++ {
+			rv := contextValues.Field(i)
+			reflectValue := reflect.NewAt(rv.Type(), unsafe.Pointer(rv.UnsafeAddr())).Elem().Interface()
+
+			reflectField := contextKeys.Field(i)
+
+			if reflectField.Name == "Context" {
+				apiDefinitionRetriever(reflectValue)
+			} else if fmt.Sprintf("%T", reflectValue) == "*apidef.APIDefinition" {
+				apidefinition := apidef.APIDefinition{}
+				b, _ := json.Marshal(reflectValue)
+				e := json.Unmarshal(b, &apidefinition)
+				if e == nil {
+					return &apidefinition
+				}
+			}
+		}
+	}
+
+	return nil
 }
 
 func isExpiredToken(tokenStr string) (bool, error) {
