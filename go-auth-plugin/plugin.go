@@ -10,6 +10,7 @@ import (
 	"time"
 	"unsafe"
 
+	"github.com/TykTechnologies/tyk/ctx"
 	"github.com/TykTechnologies/tyk/headers"
 	"github.com/TykTechnologies/tyk/user"
 
@@ -211,24 +212,26 @@ func AdiraCustomGoAuthPlugin1626(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//session:=getDefaultSession()
+	session := getDefaultSession()
 
 	// auth was successful, add session and key to request's context so other middlewares can use it
-	//ctx.SetSession(r, session ,true)
+	ctx.SetSession(r, session, true)
 	// Let the request continue
 	//fmt.Println("Auth passed")
 	logger.Info("Auth passed")
 }
 
 func getDefaultSession() *user.SessionState {
+	logger.Info("Create default session based on client_id")
 	// return session
 	return &user.SessionState{
-		OrgID: "default",
-		Alias: "custom-auth-session",
+		OrgID: oidcJwtAzp,
+		Alias: "custom-go-auth-session",
 	}
 }
 
 func apiDefinitionRetriever(currentCtx interface{}) *apidef.APIDefinition {
+	logger.Info("ApiDef Retriver called...")
 	contextValues := reflect.ValueOf(currentCtx).Elem()
 	contextKeys := reflect.TypeOf(currentCtx).Elem()
 
