@@ -1,13 +1,13 @@
 {
   "file_list": [
-    "customAuthPlugin-20220105.v1.so"
+    "customAuthPlugin-20220105.v2.so"
   ],
   "custom_middleware": {
     "pre": [],
     "post": [],
     "auth_check": {
-      "name": "AdiraCustomGoAuthPlugin1626",
-      "path": "customAuthPlugin-20220105.v1.so"
+      "name": "AdiraCustomGoAuthPlugin2022010502",
+      "path": "customAuthPlugin-20220105.v2.so"
     },
     "driver": "goplugin"
   },
