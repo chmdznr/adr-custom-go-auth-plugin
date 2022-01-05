@@ -14,4 +14,4 @@ docker run --rm -v `pwd`:/plugin-source tykio/tyk-plugin-compiler:v3.2.3-rc2 cus
 ```
 docker run --rm -w "/tmp" -v $(pwd):/tmp --entrypoint "/bin/sh" -it tykio/tyk-gateway:v3.2.3-rc2 -c '/opt/tyk-gateway/tyk bundle build -y'
 ```
-- rename `build.zip` (kasih info tanggal jika perlu)
+- rename `bundle.zip` (kasih info tanggal jika perlu)
