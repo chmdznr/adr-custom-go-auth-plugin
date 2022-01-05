@@ -89,7 +89,7 @@ func main() {
 
 }
 
-func AdiraCustomGoAuthPlugin2022010502(w http.ResponseWriter, r *http.Request) {
+func AdiraCustomGoAuthPlugin2022010503(w http.ResponseWriter, r *http.Request) {
 	authHeaders := r.Header.Get(headers.Authorization)
 
 	//fmt.Printf("%v", authHeaders)
